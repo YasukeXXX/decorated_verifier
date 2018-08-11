@@ -52,4 +52,5 @@ Session.vim
 # Auto-generated tag files
 tags
 
+.rspec_status
 

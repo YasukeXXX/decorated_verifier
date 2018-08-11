@@ -145,4 +145,49 @@ RSpec.describe DecoratedVerifier do
       it { is_expected.to eq value }
     end
   end
+
+  describe 'use case' do
+    let(:model) do
+      Class.new do
+        include DecoratedVerifier
+
+        decorate_verifier ActiveSupport::MessageVerifier.new('model'),
+          value_name: :generated_at,
+          validate: :effect?,
+          error_message: 'This token is expired',
+          decorate_value: -> { Time.now },
+          secret: 'decorated_verifier'
+
+        def self.name
+          'verifier_model'
+        end
+
+        def effect?
+          generated_at.since(1.day) > Time.now
+        end
+      end
+    end
+
+    let(:value) { 'value' }
+    let(:token) { travel_to(generated_at) { model.generate value } }
+    let(:instance) { model.new token: token }
+
+    context 'with valid token' do
+      let(:generated_at) { Time.now }
+
+      it :aggregate_failer do
+        expect(instance.valid?).to be_truthy
+        expect(instance.valid_message).to eq value
+      end
+    end
+
+    context 'with expired token' do
+      let(:generated_at) { 1.day.ago }
+
+      it do
+        expect(instance.valid?).to be_falsy
+        expect(instance.valid_message).to be_falsy
+      end
+    end
+  end
 end

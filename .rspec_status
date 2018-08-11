@@ -11,4 +11,6 @@ example_id                                 | status | run_time        |
 ./spec/decorated_verifier_spec.rb[1:5:1]   | passed | 0.00587 seconds |
 ./spec/decorated_verifier_spec.rb[1:6:1]   | passed | 0.00464 seconds |
 ./spec/decorated_verifier_spec.rb[1:7:1:1] | passed | 0.00907 seconds |
-./spec/decorated_verifier_spec.rb[1:7:2:1] | passed | 0.00475 seconds |
+./spec/decorated_verifier_spec.rb[1:7:2:1] | passed | 0.04913 seconds |
+./spec/decorated_verifier_spec.rb[1:8:1:1] | passed | 0.0422 seconds  |
+./spec/decorated_verifier_spec.rb[1:8:2:1] | passed | 0.00687 seconds |

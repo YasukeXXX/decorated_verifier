@@ -21,6 +21,8 @@ module DecoratedVerifier
         return options[:secret].call if options[:secret].is_a? Proc
         options[:secret]
       end
+
+      send(:alias_method, options[:value_name], :decorated_message)
     end
 
     def generate(value)

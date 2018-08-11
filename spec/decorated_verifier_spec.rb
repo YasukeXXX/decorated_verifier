@@ -10,6 +10,7 @@ RSpec.describe DecoratedVerifier do
       end
     end
   end
+
   let(:params) { { decorate_value: decorate_value, value_name: value_name, validate: validate, error_message: error_message, secret: secret } }
   let(:decorate_value) { 'decorate_value' }
   let(:error_message) { 'error_message' }
@@ -97,13 +98,51 @@ RSpec.describe DecoratedVerifier do
   end
 
   describe '#decoreated_message' do
-    context 'with invalid token'
-    context 'with valid token'
+    subject { verifier_instance.decorated_message }
+
+    let(:verifier_instance) { verifier_model.new token: token }
+    let(:token) { verifier_model.generate value }
+    let(:value) { 'value' }
+
+    it { is_expected.to eq decorate_value }
   end
 
-  describe '#message' do
+  describe '#original_message' do
+    subject { verifier_instance.original_message }
+
+    let(:verifier_instance) { verifier_model.new token: token }
+    let(:token) { verifier_model.generate value }
+    let(:value) { 'value' }
+    let(:secret) { 'decorated_verifier' }
+    let(:decorated_verifier) { ActiveSupport::MessageVerifier.new(secret) }
+    let(:signed_decorate_value) { decorated_verifier.generate(decorate_value) }
+
+    it { is_expected.to eq [value, signed_decorate_value] }
   end
 
   describe '#valid_message' do
+    subject { verifier_instance.valid_message }
+
+    let(:verifier_instance) { verifier_model.new token: token }
+    let(:token) { verifier_model.generate value }
+    let(:value) { 'value' }
+
+    before do
+      verifier_instance.define_singleton_method validate do
+        decorated_message == 'decorate_value'
+      end
+    end
+
+    context 'with invalid decorated message' do
+      let(:decorate_value) { 'invalid_value' }
+
+      it { is_expected.to be_falsy }
+    end
+
+    context 'with valid token' do
+      let(:decorate_value) { 'decorate_value' }
+
+      it { is_expected.to eq value }
+    end
   end
 end

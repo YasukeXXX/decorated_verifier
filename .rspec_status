@@ -1,10 +1,14 @@
 example_id                                 | status | run_time        |
 ------------------------------------------ | ------ | --------------- |
-./spec/decorated_verifier_spec.rb[1:1:1]   | passed | 0.02125 seconds |
-./spec/decorated_verifier_spec.rb[1:2:1]   | passed | 0.00407 seconds |
-./spec/decorated_verifier_spec.rb[1:3:1:1] | passed | 0.00267 seconds |
-./spec/decorated_verifier_spec.rb[1:3:2:1] | passed | 0.00231 seconds |
-./spec/decorated_verifier_spec.rb[1:3:3:1] | passed | 0.00209 seconds |
-./spec/decorated_verifier_spec.rb[1:4:1:1] | passed | 0.09168 seconds |
-./spec/decorated_verifier_spec.rb[1:4:2:1] | passed | 0.03713 seconds |
-./spec/decorated_verifier_spec.rb[1:4:3:1] | passed | 0.0044 seconds  |
+./spec/decorated_verifier_spec.rb[1:1:1]   | passed | 0.0191 seconds  |
+./spec/decorated_verifier_spec.rb[1:2:1]   | passed | 0.00524 seconds |
+./spec/decorated_verifier_spec.rb[1:3:1:1] | passed | 0.00263 seconds |
+./spec/decorated_verifier_spec.rb[1:3:2:1] | passed | 0.00206 seconds |
+./spec/decorated_verifier_spec.rb[1:3:3:1] | passed | 0.0024 seconds  |
+./spec/decorated_verifier_spec.rb[1:4:1:1] | passed | 0.05456 seconds |
+./spec/decorated_verifier_spec.rb[1:4:2:1] | passed | 0.03306 seconds |
+./spec/decorated_verifier_spec.rb[1:4:3:1] | passed | 0.00467 seconds |
+./spec/decorated_verifier_spec.rb[1:5:1]   | passed | 0.00587 seconds |
+./spec/decorated_verifier_spec.rb[1:6:1]   | passed | 0.00464 seconds |
+./spec/decorated_verifier_spec.rb[1:7:1:1] | passed | 0.00907 seconds |
+./spec/decorated_verifier_spec.rb[1:7:2:1] | passed | 0.00475 seconds |
